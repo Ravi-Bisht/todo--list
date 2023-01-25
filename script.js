@@ -11,11 +11,7 @@ let totalTasks=document.querySelector('#count');
 var count=0;
 
 
-
-
-
 // console.log('hello');
-
 
 
 function addTodo(e){
@@ -86,9 +82,42 @@ function addTodo(e){
         count++;
     }
 
-    inputValue.value="";    
-    totalTasks.innerText=count;
-}
+
+    // filter buttons based on the completed ,pending and all
+    // we are just changing the display property to filter the todolist elements
+    const completed =document.getElementById('completed');
+
+    completed.addEventListener('click',function(){
+
+    checkButton.parentElement.style.display = "flex";
+
+    if(checkButton.value=="false"){
+        checkButton.parentElement.style.display = "none";
+    }
+
+    })
+
+    const pending =document.getElementById('pending');
+
+    pending.addEventListener('click',function(){
+        checkButton.parentElement.style.display = "flex";
+
+    if(checkButton.value=="true"){
+        checkButton.parentElement.style.display = "none";
+    }
+
+    })
+
+    const all =document.getElementById('all');
+
+    all.addEventListener('click',function(){
+        checkButton.parentElement.style.display = "flex";
+
+    })
+
+        inputValue.value="";    
+        totalTasks.innerText=count;
+    }
 
 
 addTask.addEventListener('click',addTodo);
@@ -122,7 +151,7 @@ function deleteTask(e){
 taskContainer.addEventListener('click',deleteTask);
 
 
-// just made this to toggle the target value not interfaring with the code but changing the target.value in DOM after clicking the checkbox
+// just made this to toggle the target value changing the target.value in DOM after clicking the checkbox  we made this toggle value so that we can filter the todo list on the basis of completed , pending. if target is checked then its value will be true else false
 function toggle(e){
 
     let target=e.target;
@@ -130,11 +159,11 @@ function toggle(e){
     if( target.classList.contains("todo-check") ){
         if(target.checked==false){
 
-            // target.checked=true;
+            
             target.value=false;
 
         }else{
-            // target.checked=false;
+            
             target.value=true;
 
         }
@@ -142,6 +171,11 @@ function toggle(e){
     }
 }
 document.addEventListener('click',toggle);
+
+
+
+
+
 
 
 
